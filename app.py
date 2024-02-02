@@ -48,7 +48,7 @@ salary: how much is the pay they offer,
 skills: a list of required skills for the position,
 position_level: if the job is entry level senior staff manager etc
 job_role: the job title,
-industry: what industry the job fall into, 
+industry: what category of industry the job fall into healthcare technology finance etc,
 
 
 Convert the questions asked into SQL query with mysql syntax,
@@ -93,5 +93,6 @@ if submit:
             print(row)
             st.header(row)
     except Exception as e:
-        st.text("I am sorry I could not get you an answer for that my data is limited to mainly data analyst jobs")
+        st.text('''I am sorry I could not get you an answer for that my data is 
+                   limited to mainly data analyst jobs''')
         st.text("Rephrase or ask a different questions please")
