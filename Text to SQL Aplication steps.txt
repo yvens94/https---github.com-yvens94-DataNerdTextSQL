@@ -1,0 +1,67 @@
+Text to SQL Aplication
+
+prompt----LLM------ Gemini Pro---------Query--------SQL----------DATABASE-----------RESPONSE
+
+
+
+IMPLEMENTATION
+
+Create environment
+
+install requirements
+
+Clean the data
+
+sql lite
+inserts records
+
+
+llm app
+geminipro and sql database
+
+
+Clean the data
+Column: 
+
+
+title: to standardize eventually create new columns to not lose tomuch info
+
+company name: correct
+
+drop ('Unnamed: 0','job_id', 'thumbnail','posted_at','search_term','date_time','search_location', 'commute_time')
+
+Salary columns
+
+keeping just salary standardize because if reflects the average betwen the lower and upper bond offered by jobs express in years
+drop('salary','salary_pay','salary_rate','salary_avg','salary_min','salary_max','salary_hourly','salary_yearly',)
+
+question : what is the state with more jobs for data nerds? ONE SHOT PROMPTING
+SQL by gemini
+SELECT state, COUNT(DISTINCT company_name) AS num_companies
+FROM datanerd
+WHERE skills LIKE '%data%'
+GROUP BY state
+ORDER BY num_companies DESC
+LIMIT 1;
+
+AFTER PROMPT ENGINEERING
+question : what is the state with more jobs for data nerds? FEW SHOT PROMPTING
+SELECT state, COUNT(job_role) AS job_count
+FROM datanerd
+WHERE job_role LIKE '%data%'
+GROUP BY state
+ORDER BY job_count DESC
+LIMIT 1
+
+how many  companies publish their salaries
+
+SELECT COUNT(DISTINCT company_name)
+FROM datanerd
+WHERE salary IS NOT NULL;
+
+
+how many jobs are published on linkedin
+SELECT COUNT(*) 
+FROM datanerd
+WHERE job_platform LIKE '%LinkedIn%';
+(14187,)
