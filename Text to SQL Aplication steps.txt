@@ -1,4 +1,7 @@
-Text to SQL Aplication
+Text to SQL Aplication called DataNerdTextSQL
+
+we use an extract of the data from the site datanerd.tech 
+and use llms to allow users to query it using natural language
 
 prompt----LLM------ Gemini Pro---------Query--------SQL----------DATABASE-----------RESPONSE
 
@@ -8,16 +11,32 @@ IMPLEMENTATION
 
 Create environment
 
-install requirements
+install requirements and environment variables
 
-Clean the data
+get the data
 
-sql lite
+Explore and Clean the data 
+
+load data in a sql lite database
 inserts records
 
+configure LLM
 
+build prompt
+build app in streamlit
 llm app
-geminipro and sql database
+geminipro create sql query  and access sql database
+experiment with one shot and few shot inference
+
+double down on prompt engineering details
+
+generate correct inference
+
+deployed
+
+document
+
+
 
 
 Clean the data
