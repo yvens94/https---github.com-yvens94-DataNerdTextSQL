@@ -64,3 +64,10 @@ Prompt engineering is a crucial aspect of DataNerdTextSQL, enabling effective co
 
 DataNerdTextSQL is a powerful Text to SQL Application designed to facilitate seamless querying of a dataset using natural language. By following the outlined implementation steps and leveraging prompt engineering techniques, users can efficiently interact with the dataset and retrieve relevant information using simple natural language queries.
 
+
+Examples of query obtained before and after prompt engineering
+![alt text](image.png)
+
+
+![alt text](image-1.png)
+

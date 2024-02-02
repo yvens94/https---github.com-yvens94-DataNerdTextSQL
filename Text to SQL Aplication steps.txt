@@ -54,8 +54,21 @@ Salary columns
 keeping just salary standardize because if reflects the average betwen the lower and upper bond offered by jobs express in years
 drop('salary','salary_pay','salary_rate','salary_avg','salary_min','salary_max','salary_hourly','salary_yearly',)
 
-question : what is the state with more jobs for data nerds? ONE SHOT PROMPTING
-SQL by gemini
+BEFORE OPTIMIZATION
+question : what is the state with more jobs for data nerds? 
+
+SELECT state, COUNT(state), COUNT company_name COUNT data
+FROM jobs
+WHERE job_title = 'Data Nerd'
+GROUP BY state
+ORDER BY COUNT(*) DESC;
+
+
+
+AFTER PROMPT ENGINEERING AND OPTIMIZATION
+
+question : what is the state with more jobs for data nerds? 
+
 SELECT state, COUNT(DISTINCT company_name) AS num_companies
 FROM datanerd
 WHERE skills LIKE '%data%'
@@ -63,8 +76,7 @@ GROUP BY state
 ORDER BY num_companies DESC
 LIMIT 1;
 
-AFTER PROMPT ENGINEERING
-question : what is the state with more jobs for data nerds? FEW SHOT PROMPTING
+question : what is the state with more jobs for data nerds? 
 SELECT state, COUNT(job_role) AS job_count
 FROM datanerd
 WHERE job_role LIKE '%data%'
@@ -72,15 +84,25 @@ GROUP BY state
 ORDER BY job_count DESC
 LIMIT 1
 
-how many  companies publish their salaries
+how many  companies publish their salaries?
 
 SELECT COUNT(DISTINCT company_name)
 FROM datanerd
 WHERE salary IS NOT NULL;
 
+KEEPS GETTING BETTER EACH TIME WE ADD DETAILS OR TAKE OFF DETAILS TO THE PROMPT
 
-how many jobs are published on linkedin
+how many jobs are published on linkedin?
 SELECT COUNT(*) 
 FROM datanerd
 WHERE job_platform LIKE '%LinkedIn%';
-(14187,)
+
+
+
+what are 5 lowest paying titles?
+
+SELECT job_role
+FROM datanerd
+GROUP BY job_role
+ORDER BY salary ASC
+LIMIT 6;
