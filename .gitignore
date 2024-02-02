@@ -161,4 +161,4 @@ cython_debug/
 #.idea/
 #ok
 
- gsearch_jobs.csv
+.csv
