@@ -21,8 +21,9 @@ def get_gemini_response(question,prompt):
 
 
 ## function to retrieve query from the sql database
-db_path= "https://github.com/yvens94/https---github.com-yvens94-DataNerdTextSQL/blob/main/datanerd.db"
+current_dir= os.getcwd()
 
+db_path= os.path.join(current_dir, "datanerd.db")
 def read_sql_query(sql,db_path):
     conn=sqlite3.connect(db_path)
     cur=conn.cursor()
@@ -93,6 +94,9 @@ def main():
             for row in data:
                 print(row)
                 st.header(row)
+            
+            st.write(' And the sql code is')
+            st.write(response)
         except Exception as e:
             st.text('''I am sorry I could not get you an answer for that my data is 
                     limited to mainly data analyst jobs''')
