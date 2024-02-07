@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
-load_dotenv() ## load all the environment variables
-
 import streamlit as st
 import os
 import sqlite3
 import google.generativeai as genai
+
+load_dotenv() ## load all the environment variables
 
 ##configure api key
 
@@ -49,14 +49,15 @@ work_from_home: when it 'True' means they allow home office
 salary: how much is the pay they offer, 
 skills: a list of required skills for the position,
 position_level: if the job is entry level senior staff manager etc
-job_role: the job title,
+job_role: the job title,  
 industry: what category of industry the job fall into healthcare technology finance etc,
 
 
 Convert the questions asked into SQL query with mysql syntax,
 use your knowledge of natural language to interpret the questions
 And use your own knowledge of SQL to convert the questions correctly, this is very important
-Use wildcards for filtering using Like
+Use wildcards for filtering using Like, don't add data to the job_titles even if it is in the question
+for example: data scientist use just scientist, data analyst just analyst and on
 When using Limit always use the limit you want +1, if you want one use 2 if you want 2 use 3 
 also the sql code should not have ``` in beginning or end and sql word in output
 """
@@ -67,14 +68,17 @@ also the sql code should not have ``` in beginning or end and sql word in output
 
 #streamlit app
 def main():
-    lukesite="https://datanerd.tech/"
+   
 
     st.set_page_config(page_title =" Talk to the DATANERD data and it will Answer")
-    st.header("Talk to the DATANERD data and it will Answer; powered by Gemini-Pro to retrieve SQL Data")
-    st.text("The extract of the data we could access is on data analyst jobs,")
-    st.text(" if you asked questions about other you might or migh not receive an answer")
-    st.text(f'Visit the datanerd original website {lukesite}')
-    st.text("ask questions like what is the most common job title?")
+    st.header("Talk to the DATANERD data and it will Answer")
+    st.markdown("*powered by Gemini-Pro to retrieve SQL Data*")
+    st.write("---")
+    st.text("The extract of the data we could access is mostly on data analyst jobs,")
+    st.text("If you asked questions about other roles you might or might not receive an answer")
+    st.text("[Visit the datanerd original website](https://datanerd.tech/)")
+    st.text("Ask questions like 'What is the most common job title?'")
+    st.write("---")
 
     question = st.text_input("Input: ", key="input")
 
@@ -93,14 +97,14 @@ def main():
             st.subheader("the response is")
             for row in data:
                 print(row)
-                st.header(row)
+                st.write(row)
             
-            st.write(' And the sql code is')
-            st.write(response)
+            st.subheader(' SQL Code')
+            st.code(response, language="SQL")
         except Exception as e:
-            st.text('''I am sorry I could not get you an answer for that my data is 
+            st.error('''I am sorry I could not get you an answer for that my data is 
                     limited to mainly data analyst jobs''')
-            st.text("Rephrase or ask a different questions please")
+            st.error("Rephrase or ask a different questions please")
 
 if __name__=='__main__':
     main()
