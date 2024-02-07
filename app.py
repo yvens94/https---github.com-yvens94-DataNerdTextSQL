@@ -87,7 +87,7 @@ def main():
 
             response=get_gemini_response(prompt, question)
             print(response)
-            data=read_sql_query(response, "datanerd.db")
+            data=read_sql_query(response, db_path)
 
             st.subheader("the response is")
             for row in data:
