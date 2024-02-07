@@ -64,35 +64,38 @@ also the sql code should not have ``` in beginning or end and sql word in output
 
 
 #streamlit app
+def main():
+    lukesite="https://datanerd.tech/"
 
-lukesite="https://datanerd.tech/"
+    st.set_page_config(page_title =" Talk to the DATANERD data and it will Answer")
+    st.header("Talk to the DATANERD data and it will Answer; powered by Gemini-Pro to retrieve SQL Data")
+    st.text("The extract of the data we could access is on data analyst jobs,")
+    st.text(" if you asked questions about other you might or migh not receive an answer")
+    st.text(f'Visit the datanerd original website {lukesite}')
+    st.text("ask questions like what is the most common job title?")
 
-st.set_page_config(page_title =" Talk to the DATANERD data and it will Answer")
-st.header("Talk to the DATANERD data and it will Answer; powered by Gemini-Pro to retrieve SQL Data")
-st.text("The extract of the data we could access is on data analyst jobs,")
-st.text(" if you asked questions about other you might or migh not receive an answer")
-st.text(f'Visit the datanerd original website {lukesite}')
-st.text("ask questions like what is the most common job title?")
+    question = st.text_input("Input: ", key="input")
 
-question = st.text_input("Input: ", key="input")
+    submit= st.button("Submit the question")
 
-submit= st.button("Submit the question")
-
-# ifsubmit is clicked,
+    # ifsubmit is clicked,
 
 
-if submit:
-    try:
+    if submit:
+        try:
 
-        response=get_gemini_response(prompt, question)
-        print(response)
-        data=read_sql_query(response, "datanerd.db")
+            response=get_gemini_response(prompt, question)
+            print(response)
+            data=read_sql_query(response, "datanerd.db")
 
-        st.subheader("the response is")
-        for row in data:
-            print(row)
-            st.header(row)
-    except Exception as e:
-        st.text('''I am sorry I could not get you an answer for that my data is 
-                   limited to mainly data analyst jobs''')
-        st.text("Rephrase or ask a different questions please")
+            st.subheader("the response is")
+            for row in data:
+                print(row)
+                st.header(row)
+        except Exception as e:
+            st.text('''I am sorry I could not get you an answer for that my data is 
+                    limited to mainly data analyst jobs''')
+            st.text("Rephrase or ask a different questions please")
+
+if __name__=='__main__':
+    main()
