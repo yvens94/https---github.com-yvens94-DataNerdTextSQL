@@ -23,7 +23,7 @@ def get_gemini_response(question,prompt):
 ## function to retrieve query from the sql database
 current_dir= os.getcwd()
 
-db_path= "datanerd.db"
+db_path= "https://github.com/yvens94/https---github.com-yvens94-DataNerdTextSQL/blob/main/datanerd.db"
 def read_sql_query(sql,db_path):
     conn=sqlite3.connect(db_path)
     cur=conn.cursor()
