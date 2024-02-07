@@ -21,9 +21,10 @@ def get_gemini_response(question,prompt):
 
 
 ## function to retrieve query from the sql database
+db_path= "https://github.com/yvens94/https---github.com-yvens94-DataNerdTextSQL/blob/main/datanerd.db"
 
-def read_sql_query(sql,db):
-    conn=sqlite3.connect(db)
+def read_sql_query(sql,db_path):
+    conn=sqlite3.connect(db_path)
     cur=conn.cursor()
     cur.execute(sql)
     rows=cur.fetchall()
