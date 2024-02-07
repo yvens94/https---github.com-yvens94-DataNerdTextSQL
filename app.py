@@ -74,9 +74,13 @@ def main():
     st.header("Talk to the DATANERD data and it will Answer")
     st.markdown("*powered by Gemini-Pro to retrieve SQL Data*")
     st.write("---")
-    st.text("The extract of the data we could access is mostly on data analyst jobs,")
+    st.text('''The extract of the data we could access is mostly on data analyst jobs;
+            because of the limited data the info provided here might not reflect the real info
+            ''')
+    st.text('the info here is not for profesional use or updated')
     st.text("If you asked questions about other roles you might or might not receive an answer")
     st.text("[Visit the datanerd original website](https://datanerd.tech/)")
+
     st.text("Ask questions like 'What is the most common job title?'")
     st.write("---")
 
